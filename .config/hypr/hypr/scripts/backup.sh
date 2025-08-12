@@ -12,6 +12,4 @@ rsync -r ~/.config/waybar ~/okome/.config/waybar
 rsync -r ~/.config/wlogout ~/okome/.config/wlogout
 rsync -r ~/.config/wofi ~/okome/.config/wofi
 
-git add --all &&  git commit -m 'backup $(date)'
-
-echo $(date)
+git add --all &&  git commit -m 'backup $(date)' && git push
