@@ -1,0 +1,13 @@
+term=kitty
+location=center
+width=600
+prompt= Whaddya want?..
+show_all=true
+gtk_dark=false
+insensitive=true
+allow_markup=true
+allow_images=true
+line_wrap=word
+lines=9
+no_actions=true
+hid_scroll=true

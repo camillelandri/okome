@@ -1,0 +1,132 @@
+// -*- mode: jsonc -*-
+{
+    "reload_style_on_change": true,
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 32, // Waybar height (to be removed for auto height)
+    "width": 2500, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    "margin-top":10,
+    // Choose the order of the modules
+    "modules-left": [
+        "custom/media",
+        "tray",
+        "group/system-info",
+        "custom/vpn"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "group/controlcentre"    
+    ],
+    "group/system-info": {
+		"orientation": "horizontal",
+		"modules": [
+			"cpu",
+			"memory",
+            "network"
+		]
+	},
+    "group/controlcentre": {
+		"orientation": "horizontal",
+		"modules": [
+			"clock",
+			"custom/system-update",
+            "custom/bluetooth"
+		]
+    },
+    "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+        "cpu": { 
+    "interval": 10, 
+    "format": "CPU: {usage}%" 
+    },
+    "memory": { 
+    "interval": 30, 
+    "format": "RAM: {percentage}%" 
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{bandwidthDownBits}  ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{essid} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pgrep pavucontrol >/dev/null 2>&1 && killall pavucontrol || pavucontrol"
+    },
+        "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+                "*": 3 // 3 workspaces by default on every monitor
+        }
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+        "custom/system-update": {
+        "exec": "sh ~/.config/waybar/scripts/system-update.sh --status --unupdated-color \"#fab387\" --updated-color \"#a6e3a1\" | cat",
+        "return-type": "raw",
+        "format": "{} ",
+        "rotate": 0,
+        "on-click": "CHECKUPDATES_DB=\"/tmp/checkup-db-${UID}-$$\" sh ~/.config/waybar/scriptssystem-update.sh",
+        "interval": 86400,
+        "tooltip": false
+    },
+    "custom/bluetooth": {
+        "format": "<span color=\"#89b4fa\">󰂯  </span>",
+        "interval": 3,
+        "rotate": 0,
+        "on-click": "pgrep blueman-manager >/dev/null 2>&1 && killall blueman-manager || blueman-manager",
+        "tooltip": false
+    },
+        "custom/vpn": {
+        "return-type": "raw",
+        "format": "󰯄",
+        "interval": 3,
+        "rotate": 0,
+        "on-click": "protonvpn-app",
+        "tooltip": false
+    },
+
+}

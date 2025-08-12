@@ -21,6 +21,10 @@ GTK themes used:
  - Gruvbox retro (for dark mode)
  - Material Sakura (for light mode)
 
+Kitty themes used:
+ - Kaolin Ocean (for dark mode)
+ - Solarized Light (for light mode)
+
 ### Credits
 The theme used in SDDM is heavily based on the themes made by Keyitdev/sddm-astronaut-theme (https://github.com/Keyitdev/sddm-astronaut-theme/).
 
